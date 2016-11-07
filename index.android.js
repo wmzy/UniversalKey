@@ -3,6 +3,7 @@ import {
 	AppRegistry,
 	StyleSheet,
 	Navigator,
+	TouchableHighlight,
 	Text,
 	View
 } from 'react-native';
@@ -32,7 +33,9 @@ export default class UniversalKey extends Component {
 							<View style={styles.container}>
 								<Text>图片路径： {path}</Text>
 								<Text>router： {JSON.stringify(route)}</Text>
-								<Text style={styles.capture} onPress={this.showCamera}>拍照</Text>
+								<TouchableHighlight style={styles.capture} onPress={this.showCamera}>
+									<Text>拍照</Text>
+								</TouchableHighlight>
 							</View>
 						)
 					}
