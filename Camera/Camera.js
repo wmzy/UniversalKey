@@ -11,20 +11,27 @@ import TesseractOcr from 'react-native-tesseract-ocr';
 
 export default class CameraView extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    navigator: PropTypes.object.isRequired,
     onCapture: PropTypes.func.isRequired
   };
 
   takePicture = () => {
-    const {onCapture} = this.props;
-    console.log('ssss.......');
+    const {onCapture, navigator} = this.props;
+    console.log('takePicture start');
     this.camera.capture({target: Camera.constants.CaptureTarget.disk})
       .then(({path}) => {
-        console.log('path: ', path);
+        console.log('takePicture end');
+        console.log('Picture path: ', path);
+        console.log('Ocr start');
         TesseractOcr.startOcr(path.slice(7), 'LANG_ENGLISH')
           .then(text => {
-            console.log('data: ', text);
-            onCapture('text: ' + text);
+            console.log('Ocr ok');
+            console.log('text: ', text);
+            console.log('go back');
+            const routes = navigator.getCurrentRoutes();
+            const pr = routes[routes.length - 2];
+            navigator.replacePreviousAndPop({...pr, props: {text}});
           })
           .catch(e => {
             console.error(e);
