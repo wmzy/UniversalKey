@@ -21,7 +21,7 @@ export default class CameraView extends Component {
     this.camera.capture({target: Camera.constants.CaptureTarget.disk})
       .then(({path}) => {
         console.log('path: ', path);
-        TesseractOcr.startOcr(path, 'LANG_ENGLISH')
+        TesseractOcr.startOcr(path.slice(7), 'LANG_ENGLISH')
           .then(text => {
             console.log('data: ', text);
             onCapture('text: ' + text);
