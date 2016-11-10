@@ -4,7 +4,7 @@ import {
   Navigator
 } from 'react-native';
 
-import {getInitialRoute} from './core/router';
+import {getInitialRoute, renderScene} from './core/router';
 import './pages';
 
 export default class UniversalKey extends Component {
@@ -12,11 +12,7 @@ export default class UniversalKey extends Component {
     return (
       <Navigator
         initialRoute={getInitialRoute()}
-        renderScene={(route, navigator) => {
-          const Component = route.component;
-          const props = route.props || {};
-          return <Component {...props} navigator={navigator} />;
-        }}
+        renderScene={renderScene}
       />
     );
   }

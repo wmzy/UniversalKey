@@ -24,6 +24,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		2A11571840F640AEA180B15D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D17E6098E71489AA3794A24 /* libRCTCamera.a */; };
 		60D34127118649D2AF90B894 /* libRNTesseractOcr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8678BAD1BABA4B25B7D5C4CD /* libRNTesseractOcr.a */; };
+		8D57D284DA1243CDACFF32D3 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB172EFFD82244698F330209 /* libRNImagePicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		8D17E6098E71489AA3794A24 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		D1929568F62E4361AE06A95D /* RNTesseractOcr.xcodeproj */ = {isa = PBXFileReference; name = "RNTesseractOcr.xcodeproj"; path = "../node_modules/react-native-tesseract-ocr/ios/RNTesseractOcr.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		8678BAD1BABA4B25B7D5C4CD /* libRNTesseractOcr.a */ = {isa = PBXFileReference; name = "libRNTesseractOcr.a"; path = "libRNTesseractOcr.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6D2BA3B3FED143B39F53034B /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EB172EFFD82244698F330209 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2A11571840F640AEA180B15D /* libRCTCamera.a in Frameworks */,
 				60D34127118649D2AF90B894 /* libRNTesseractOcr.a in Frameworks */,
+				8D57D284DA1243CDACFF32D3 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +287,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				0C8E71594B624E9AB52ABF66 /* RCTCamera.xcodeproj */,
 				D1929568F62E4361AE06A95D /* RNTesseractOcr.xcodeproj */,
+				6D2BA3B3FED143B39F53034B /* RNImagePicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -617,6 +623,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -633,6 +640,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)/../node_modules/react-native-tesseract-ocr/ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 				);
 				INFOPLIST_FILE = "UniversalKey/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -657,6 +665,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)/../node_modules/react-native-tesseract-ocr/ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 				);
 				INFOPLIST_FILE = "UniversalKey/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -710,6 +719,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)/../node_modules/react-native-tesseract-ocr/ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -752,6 +762,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)/../node_modules/react-native-tesseract-ocr/ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

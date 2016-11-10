@@ -9,15 +9,14 @@ import {
 import Camera from 'react-native-camera';
 import TesseractOcr from 'react-native-tesseract-ocr';
 
+import router from '../../core/router';
+
 export default class CameraView extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    navigator: PropTypes.object.isRequired,
-    onCapture: PropTypes.func.isRequired
+    name: PropTypes.string.isRequired
   };
 
   takePicture = () => {
-    const {onCapture, navigator} = this.props;
     console.log('takePicture start');
     this.camera.capture({target: Camera.constants.CaptureTarget.disk})
       .then(({path}) => {
@@ -29,13 +28,10 @@ export default class CameraView extends Component {
             console.log('Ocr ok');
             console.log('text: ', text);
             console.log('go back');
-            const routes = navigator.getCurrentRoutes();
-            const pr = routes[routes.length - 2];
-            navigator.replacePreviousAndPop({...pr, props: {text}});
+            router.popWithProps({text});
           })
           .catch(e => {
             console.error(e);
-            onCapture('error: ' + e);
           })
           .done();
       })
