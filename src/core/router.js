@@ -23,7 +23,7 @@ export class Router {
     this.navigator = navigator;
     const Component = route.component;
     const props = route.props || {};
-    return <Component {...props} />;
+    return <Component name={route.name} {...props} />;
   };
 
   _getRouteWithProps = (routeName, props) => {

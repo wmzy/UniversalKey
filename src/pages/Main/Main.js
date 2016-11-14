@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {
-  Dimensions,
-  StyleSheet,
+  AsyncStorage,
+  Clipboard,
   Text,
+  TextInput,
   Image,
   TouchableHighlight,
   View
@@ -10,7 +11,7 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import TesseractOcr from 'react-native-tesseract-ocr';
 
-import router from '../../core/router';
+import s from './styles';
 
 var options = {
   title: '选择图片',
@@ -22,15 +23,20 @@ var options = {
 
 export default class Main extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    text: PropTypes.string
+    name: PropTypes.string.isRequired
   };
 
   state = {};
 
-  showCamera = () => router.push('camera');
+  handlePictureSelectForLock = () => {
+    this.handlePictureSelect('lock');
+  };
 
-  handlePictureSelect = () => {
+  handlePictureSelectForKey = () => {
+    this.handlePictureSelect('key');
+  };
+
+  handlePictureSelect = field => {
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
 
@@ -41,7 +47,6 @@ export default class Main extends Component {
         console.log('ImagePicker Error: ', response.error);
       }
       else {
-        // const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
         const source = {uri: response.uri, isStatic: true};
 
         this.setState({source});
@@ -51,7 +56,7 @@ export default class Main extends Component {
             console.log('Ocr ok');
             console.log('text: ', text);
             console.log('go back');
-            this.setState({ttt: text});
+            this.setState({[field]: text});
           })
           .catch(e => {
             console.error(e);
@@ -61,44 +66,51 @@ export default class Main extends Component {
     });
   };
 
-  render() {
-    const {text} = this.props;
-    const {source, ttt} = this.state;
+  handleLockChange = lock => this.setState({lock});
 
-    return (<View style={styles.container}>
-      <Text>router： {text}</Text>
-      <TouchableHighlight style={styles.capture} onPress={this.showCamera}>
-        <Text>拍   tt 照</Text>
-      </TouchableHighlight>
-      {
-        source && <Image source={source} />
-      }
-      <Text>source： {JSON.stringify(source)}</Text>
-      <Text>{ttt}</Text>
-      <TouchableHighlight onPress={this.handlePictureSelect}>
-        <Text>选择图片</Text>
+  handleKeyChange = key => this.setState({key});
+
+  handleSave = () => {
+    const {lock, key} = this.state;
+    AsyncStorage.setItem(`@locks:${lock}`, key);
+  };
+
+  handleCopy = () => {
+    Clipboard.setString(this.state.key);
+  };
+
+  render() {
+    const {source, lock, key} = this.state;
+
+    return (<View style={s.container}>
+      <View style={s.fieldContainer}>
+        <Text>ID: </Text>
+        <TextInput
+          value={lock}
+          onChangeText={this.handleLockChange}
+        />
+        <TouchableHighlight onPress={this.handlePictureSelectForLock}>
+          <Text>选择图片</Text>
+        </TouchableHighlight>
+      </View>
+      <View style={s.fieldContainer}>
+        <Text>Key: </Text>
+        <TextInput
+          value={key}
+          onChangeText={this.handleKeyChange}
+        />
+        <TouchableHighlight onPress={this.handlePictureSelectForKey}>
+          <Text>选择图片</Text>
+        </TouchableHighlight>
+      </View>
+      <View>
+        <TouchableHighlight onPress={this.handleSave}>
+          <Text>保存</Text>
+        </TouchableHighlight>
+      </View>
+      <TouchableHighlight onPress={this.handleCopy}>
+        <Text>复制 Key</Text>
       </TouchableHighlight>
     </View>);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40
-  }
-});
